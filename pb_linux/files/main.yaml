@@ -1,0 +1,16 @@
+---
+- name: /etc/ssh/sshd_config
+  template: src=etc/ssh/sshd_config dest=/etc/ssh/sshd_config owner=root group=root mode=0644
+  notify:
+    - sshd_restart
+
+- name: /etc/sysctl.conf
+  template: src=etc/sysctl.conf dest=/etc/sysctl.conf owner=root group=root mode=0440
+
+- name: /etc/network
+  template: src=etc/network/{{item}} dest=/etc/network/{{item}} owner=root group=root mode=0444
+  with_items:
+    - interfaces
+    - ipv4tables
+    - ipv6tables
+

@@ -1,0 +1,13 @@
+---
+- name: sshd_start
+  service: name=ssh state=started
+
+- name: sshd_stop
+  service: name=ssh state=stopped
+
+- name: sshd_restart
+  service: name=ssh state=restarted
+
+- name: apt_upgrade
+  apt: upgrade=yes cache_valid_time=86400
+

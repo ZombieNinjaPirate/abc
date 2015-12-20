@@ -1,0 +1,10 @@
+---
+- hosts: linux
+  remote_user: root
+  tasks:
+    - include: tasks/main.yaml
+    - include: files/main.yaml
+  handlers:
+    - include: handlers/main.yaml
+  vars:
+    - include: vars/main.yaml
