@@ -1,0 +1,20 @@
+---
+- name: Default Linux tools
+  apt: pkg={{item}} state=installed
+  with_items:
+       - git
+       - htop
+       - lsof
+       - nmap
+       - tree
+       - tmux
+       - vim
+
+- name: Local user
+  # python -c 'import crypt; print crypt.crypt("localadminpassword", "$1$SomeSalt$")'
+  user: name=ladmin password=$1$SomeSalt$A.VyUvAEiwW9jCxv3yWXK0
+
+- name: Pip packages
+  pip: name={{item}}
+  with_item:
+       - influxdb

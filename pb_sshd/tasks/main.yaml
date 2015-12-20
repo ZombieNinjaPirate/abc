@@ -1,0 +1,22 @@
+---
+- name: apt-get update
+  # Runs every 5th day
+  apt: update_cache=yes cache_valid_time=432000
+  notify:
+    - apt_upgrade
+
+- name: Default Linux tools
+  apt: pkg={{item}} state=installed
+  with_items:
+       - git
+       - htop
+       - lsof
+       - nmap
+       - tree
+       - tmux
+       - vim
+
+- name: Local user
+  # python -c 'import crypt; print crypt.crypt("localadminpassword", "$1$SomeSalt$")'
+  user: name=ladmin password=$1$SomeSalt$A.VyUvAEiwW9jCxv3yWXK0
+

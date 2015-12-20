@@ -1,0 +1,12 @@
+#
+#   /etc/network/interfaces
+#
+auto lo
+iface lo inet loopback
+
+pre-up iptables-restore < /etc/network/ipv4tables
+pre-up ip6tables-restore < /etc/network/ipv6tables
+
+auto eth0
+iface eth0 inet dhcp
+
